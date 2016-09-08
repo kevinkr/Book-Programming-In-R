@@ -137,3 +137,10 @@ confint.1 <- function(x, alpha = .05, two.tailed = TRUE) {
 
 confint.1(weights)
 
+t.test(weights)
+
+#not specifying two tailed conf int
+confint.1(weights, two.tailed = FALSE)
+
+#compare conf int to alpha = .10
+t.test(weights, conf.level = .90)
