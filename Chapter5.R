@@ -47,3 +47,52 @@ colors <- c("#C0C0C0", "black", "white", "#696969", "red", "blue", "brown", "gre
 Car_Colors <- cbind(Car_Colors, colors)
 #dispaly pie chart with colors
 pie(Percent, col = colors)
+names(Percent) <- c("Silver","Black", "White","Gray","Red","Blue","Brown","Green","Other")
+names(Percent)
+pie(Percent, col = colors, main = "Pie Graph of Auto Color Preferences")
+
+#barplot
+barplot(Percent, col = colors, main = "Pie Graph of Auto Color Preferences")
+
+attach(grades)
+barplot(table(Grade), col = c("red","green","blue"), main = "Grade Level")
+
+#############
+#Boxplot
+###########
+#
+#Boxplot can give an idea of how skewed or unskewed the data are
+attach(dataset)
+boxplot(Age, main = "Boxplot for Age")
+
+load("./Data/quizzes.rda")
+attach(quizzes)
+quizzes
+boxplot(quizzes)
+
+#########
+#Histograms
+########
+#
+attach(faithful)
+hist(waiting)
+
+############
+#Line graphs
+##########
+load("./Data/Min_Wage.rda")
+attach(Min_Wage)
+Min_Wage
+plot(Value, type = "o", xlab = "Year", col = "blue", main = "Minimum wage")
+
+
+##########
+#ScTTERPLOTS
+############
+load("./Data/hours.rda")
+attach(hours)
+plot(hours, GPA)
+
+#add a trendline comebine with lm model
+plot(Hours, GPA, abline(lm(GPA~Hours)), main = "Scatterplot of Hour and GPA")
+
