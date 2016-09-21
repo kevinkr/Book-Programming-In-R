@@ -151,3 +151,27 @@ gas_prices <- cbind(gas_prices, predquad)
 plot(index, Average, main = "Quadratic model")
 lines(predquad)
 
+#Determine confidence and prediction intervals for a regression model
+#use t distribution for our confidence and prediction intervals
+# We assume the error terms (residuals) are normally distributed and have equal
+# variances at all levles of y.
+
+# The confidence interval is an interval describing the ranges of the means of y for
+# each value or x.
+
+# The prediction interval, on the other hand, describes the ranges of the predicted 
+# individual values of y for each value of x. For this reason, the prediction interval 
+# will alway be wider than the confidence interval
+
+# Determine the confidence and prediction intervals for the predicted y values for our linear
+# and compares those to the confidence and prediction intervals for the predicted y values using
+# the quadratic model.
+results <- lm (Average ~ index)
+predlin <- predict(results)
+conf <- predict(results, interval = "confidence")
+pred <- predict(results, interval = "prediction")
+
+# plot the averages against the index number along with the fit line, the CI, and the 
+# prediction interval.
+
+# See newer version for updated examples
