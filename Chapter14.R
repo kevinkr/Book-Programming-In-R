@@ -191,4 +191,29 @@ with(results, null.deviance - deviance)
 # 255.9248
 with(results, df.null - df.residual)
 # 3
+#the area under the chi-square curve with 3 degrees freedom is 
+with(results, pchisq(null.deviance - deviance, df.null - df.residual, lower.tail = FALSE))
+# 3.422335e-55
+# Since P-value < .05, value is highly significant indeicating our model fit is good.
 
+# One of the objects retruned by the glm function is fitted values
+head(results$fitted.values)
+x1 <- results$fitted.values
+cbind(retention,x1)
+
+# You can think of fitted values as the risk assessment for each student. We can turn
+# those into 0s and 1s by rounding .5 and up to 1, and less than .5 to 0. Then we can 
+# determine how good our model fit is by comparing the original retention data
+# with the predicted retention. 
+# Of the freshman in the sample of 958, 592 or 64% returned as sophomores.
+
+# We can determine the association between our predicted retention (risk) and the actual
+# retention (and whether it's significant) by performing another chi-sqaure test.
+head(retention)
+results$fitted.values
+# set risk values
+results$risk[results$fitted.values >= 0.5] <- 1
+results$risk
+results$risk[results$fitted.values < 0.5] <- 0
+head(results)
+table(results$Retained, results$risk)
